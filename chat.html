@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Danaid - Bezpieczne rozmowy</title>
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+    <!-- Główny kontener aplikacji -->
+    <div class="chat-app">
+        
+        <!-- Główny kontener czatu -->
+        <div class="chat-container">
+            
+            <!-- Lewy panel - Lista znajomych -->
+            <aside class="friends-panel">
+                <div class="friends-header">
+                    <h2>Danaid</h2>
+                    <button class="add-friend-btn" onclick="showAddFriendModal()">✚ Dodaj znajomego</button>
+                </div>
+                <!-- Lista znajomych -->
+                <div class="friends-list">
+                    <div id="friends-container">
+                        <div class="no-friends-message">
+                            <div class="empty-friends-icon">👥</div>
+                            <h4>Brak znajomych</h4>
+                            <p>Dodaj pierwszego znajomego, aby rozpocząć rozmowę</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status połączenia -->
+                <div class="connection-status">
+                    <span class="status-dot online"></span>
+                    <span class="status-text">Połączony</span>
+                </div>
+            </aside>
+
+            <!-- Prawy panel - Główne okno rozmowy -->
+            <main class="chat-main">
+                
+                <!-- Header konwersacji -->
+                <div class="chat-header">
+                    <div class="chat-header-left">
+                        <div class="current-chat-avatar">👤</div>
+                        <div class="current-chat-info">
+                            <div class="current-chat-name" id="current-chat-name">Wybierz znajomego</div>
+                            <div class="current-chat-status" id="current-chat-status">Aby rozpocząć rozmowę</div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-header-right">
+                        <button class="header-btn" onclick="deleteConversation()" title="Usuń konwersację">
+                            🗑️ Usuń konwersację
+                        </button>
+                        <button class="header-btn logout-btn" onclick="logout()" title="Wyloguj">
+                            🚪 Wyloguj
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Obszar wiadomości -->
+                <div class="messages-area" id="messages-area">
+                    <div class="welcome-message">
+                        <div class="welcome-icon">🦋</div>
+                        <h3>Witaj w Chat Danaid!</h3>
+                        <p>Wybierz znajomego z listy po lewej, aby rozpocząć bezpieczną konwersację z szyfrowaniem end-to-end.</p>
+                    </div>
+                </div>
+
+                <!-- Obszar wprowadzania wiadomości -->
+                <div class="message-input-area">
+                    <div class="message-input-container">
+                        <textarea id="message-input" 
+                                  placeholder="Wybierz znajomego aby rozpocząć konwersację..."
+                                  rows="1"
+                                  onkeydown="handleMessageKeydown(event)"
+                                  oninput="autoResizeTextarea(this)"
+                                  disabled></textarea>
+                        <button class="send-btn" onclick="sendMessage()" id="send-btn" disabled>
+                            <svg viewBox="0 0 24 24">
+                                <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Konsola deweloperska na dole -->
+        <div class="dev-console">
+            <div class="console-header">
+                <span class="console-title">🛠️ Konsola Deweloperska</span>
+                <div class="console-controls">
+                    <button class="console-btn" onclick="clearConsole()">Wyczyść</button>
+                    <button class="console-btn" onclick="toggleConsole()">Zwiń/Rozwiń</button>
+                </div>
+            </div>
+            <div class="console-content" id="console-content">
+                <!-- Logi będą dodawane dynamicznie -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal dodawania znajomego (przygotowany na FriendsManager) -->
+    <div class="modal" id="add-friend-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Dodaj znajomego</h3>
+                <button class="modal-close" onclick="closeAddFriendModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="friend-username">Nazwa użytkownika:</label>
+                    <input type="text" 
+                           id="friend-username" 
+                           placeholder="Wprowadź nazwę użytkownika"
+                           onkeydown="handleAddFriendKeydown(event)">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeAddFriendModal()">Anuluj</button>
+                <button class="btn-primary" onclick="addFriend()">Dodaj znajomego</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast notifications container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Skrypty - ładowane w odpowiedniej kolejności (BEZ friends-manager.js i messages-manager.js) -->
+    <script src="../assets/js/console.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/chat.js"></script>
+    <script src="../assets/js/friends-manager.js"></script>
+    <script src="../assets/js/signal-crypto.js"></script>
+    <script src="../assets/js/messages-manager.js"></script>
+</body>
+</html>

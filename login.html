@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danaid - Bezpieczny czat E2E</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <div class="butterfly-bg"></div>
+    
+    <!-- Główny nagłówek -->
+    <header class="main-header">
+        <h1 class="main-title">Chat Danaid</h1>
+    </header>
+
+    <div class="container">
+        <!-- Lewa strona - Informacje -->
+        <div class="info-section">
+            <h3 class="subtitle">Bezpieczny czat z szyfrowaniem end-to-end</h3>
+            
+            <div class="description">
+               <p>
+                    Ten projekt to efekt czystej zajawki na programowanie, bezpieczeństwo i nowoczesną kryptografię. Zbudowany od podstaw przy pomocy modelu językowego AI z myślą o nauce i eksperymentowaniu, stanowi uproszczoną implementację technologii używanych w topowych aplikacjach jak Signal.<br><br>
+                    Jeśli chcesz zrozumieć, jak działa szyfrowanie end-to-end, wymiana kluczy czy podpisy cyfrowe – jesteś w dobrym miejscu.
+                </p>
+                <p>
+                    Wszystko, co tu znajdziesz, jest w pełni open-source. Możesz przeglądać kod, testować go samodzielnie, uczyć się na jego bazie albo nawet rozwijać go dalej. Projekt celowo nie jest przesadnie rozbudowany – chodziło o przejrzystość i edukację, a nie dużą ilość funkcji.<br> Ale jeśli chcesz, możesz go łatwo rozszerzyć.<br><br>
+                </p>
+                <p>
+                    Inspiracją była aplikacja Signal i protokoły takie jak X3DH oraz Double Ratchet. Choć nie jest to ich pełna implementacja 1:1, wiele mechanizmów zostało odwzorowanych na potrzeby nauki i eksperymentów z E2EE.
+                </p>
+            </div>
+
+            <ul class="features">
+                <li>Szyfrowanie end-to-end każdej wiadomości</li>
+                <li>Forward secrecy z wymianą kluczy ECDH</li>
+                <li>Autoryzacja z podpisami cyfrowymi</li>
+                <li>System znajomych dla większego bezpieczeństwa</li>
+                <li>Kod źródłowy otwarty i edukacyjny</li>
+            </ul>
+        </div>
+
+        <!-- Prawa strona - Formularz logowania -->
+        <div class="login-section">
+            <div class="login-container">
+                <div class="auth-tabs">
+                    <button class="tab active">Logowanie</button>
+                    <button class="tab">Rejestracja</button>
+                </div>
+
+                <div id="login-form" class="auth-form active">
+                    <h2 class="login-title">Zaloguj się</h2>
+                    <form id="login-form-element">
+                        <div class="form-group">
+                            <label for="username">Nazwa użytkownika</label>
+                            <input type="text" 
+                                   id="username" 
+                                   name="username" 
+                                   placeholder="Wprowadź nazwę użytkownika" 
+                                   required
+                                   autocomplete="username">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Hasło</label>
+                            <input type="password" 
+                                   id="password" 
+                                   name="password" 
+                                   placeholder="Wprowadź hasło" 
+                                   required
+                                   autocomplete="current-password">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="private-key">Klucz prywatny (.pem)</label>
+                            <input type="file" 
+                                   id="private-key" 
+                                   name="private-key" 
+                                   accept=".pem,.txt" 
+                                   required>
+                            <div class="file-info">
+                                <small>Wybierz plik klucza prywatnego pobrany podczas rejestracji</small>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="login-btn">Zaloguj się</button>
+                        
+                        <div class="form-footer">
+                            <small class="security-info">
+                                🔒 Twoje hasło i klucz prywatny są przetwarzane lokalnie i szyfrowane
+                            </small>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="register-form" class="auth-form">
+                    <h2 class="login-title">Utwórz konto</h2>
+                    <form id="register-form-element">
+                        <div class="form-group">
+                            <label for="reg-username">Nazwa użytkownika</label>
+                            <input type="text" 
+                                   id="reg-username" 
+                                   name="username" 
+                                   placeholder="Wybierz nazwę użytkownika (min. 3 znaki)" 
+                                   required
+                                   minlength="3"
+                                   maxlength="50"
+                                   pattern="[a-zA-Z0-9_\-]+"
+                                   autocomplete="username">
+                            <div class="input-help">
+                                <small>Tylko litery, cyfry, podkreślenia i myślniki</small>
+                            </div>
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="reg-password">Hasło</label>
+                            <input type="password" 
+                                   id="reg-password" 
+                                   name="password" 
+                                   placeholder="Min. 8 znaków, duża litera, cyfra, znak specjalny" 
+                                   required
+                                   minlength="8"
+                                   autocomplete="new-password">
+                            <div class="input-help">
+                                <small>Hasło musi zawierać: min. 8 znaków, dużą literę, cyfrę i znak specjalny</small>
+                            </div>
+                        </div>
+            
+                        <button type="submit" class="login-btn">Utwórz konto</button>
+                        
+                        <div class="form-footer">
+                            <small class="security-info">
+                                🔐 Po rejestracji pobierzesz klucz prywatny - zachowaj go bezpiecznie!
+                            </small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kontener z przyciskami na dole -->
+    <div class="bottom-section">
+        <div class="action-buttons-container">
+            <div class="action-buttons">
+                <a href="#" class="action-btn">📂 Zobacz kod na GitHub</a>
+                <a href="#" class="action-btn">📋 Dokumentacja</a>
+                <a href="#" class="action-btn">🔄 Schemat Data Flow</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal dla instrukcji pobrania klucza -->
+    <div class="modal" id="key-download-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🎉 Rejestracja zakończona!</h3>
+                <button class="modal-close" onclick="closeKeyDownloadModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="success-message">
+                    <div class="success-icon">✅</div>
+                    <p><strong>Twoje konto zostało utworzone pomyślnie!</strong></p>
+                    <p>Teraz musisz pobrać swój klucz prywatny:</p>
+                    
+                    <div class="key-instructions">
+                        <div class="instruction-item">
+                            <span class="step-number">1</span>
+                            <span>Kliknij przycisk "Pobierz klucz prywatny"</span>
+                        </div>
+                        <div class="instruction-item">
+                            <span class="step-number">2</span>
+                            <span>Zapisz plik w bezpiecznym miejscu</span>
+                        </div>
+                        <div class="instruction-item">
+                            <span class="step-number">3</span>
+                            <span>Użyj tego pliku do logowania</span>
+                        </div>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <strong>⚠️ WAŻNE:</strong> Jeśli utracisz ten plik, nie będziesz mógł się zalogować!
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" id="download-key-btn">📥 Pobierz klucz prywatny</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Przetwarzanie...</div>
+        </div>
+    </div>
+
+    <!-- Toast notification container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Skrypty -->
+    <script src="form-tabs.js"></script>
+</body>
+</html>
