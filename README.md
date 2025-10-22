@@ -118,3 +118,4 @@ Wersja produkcyjna będzie działać wyłącznie w przeglądarce.
 Projekt edukacyjny **Danaid**  
 Tworzony w celach naukowych i rozwojowych — z pasją do bezpieczeństwa, kryptografii i prostoty.
 
+## Wersja projektu: "Pusty frontend"
