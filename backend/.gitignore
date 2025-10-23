@@ -1,1 +1,67 @@
-data/users.json
+# ===========================================
+# 🧱 PODSTAWOWE PLIKI I FOLDERY NODE.JS
+# ===========================================
+
+# Folder z zależnościami (zawsze generowany przez npm/yarn)
+node_modules/
+
+# Logi (np. błędy serwera, zapis debugowania)
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Pliki lock (jeśli chcesz trzymać tylko jeden typ)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ===========================================
+# 🔐 SEKRETY I KONFIGURACJE LOKALNE
+# ===========================================
+
+# Pliki z kluczami API i zmiennymi środowiskowymi
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# ===========================================
+# 🧠 DANE RUNTIME / CACHE / PLIKI TYMCZASOWE
+# ===========================================
+
+# Folder z dynamicznie tworzonym katalogiem użytkowników
+data/
+
+# Kopie zapasowe, pliki tymczasowe
+*.bak
+*.tmp
+
+# ===========================================
+# 🧩 SYSTEMOWE I ŚRODOWISKOWE ŚMIECI
+# ===========================================
+
+# MacOS / Windows / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# ===========================================
+# 🚀 VERCEL I INNE ŚRODOWISKA DEPLOYU
+# ===========================================
+
+# Folder generowany automatycznie przez Vercel
+.vercel/
+
+# ===========================================
+# 🧪 TESTY / DOKUMENTACJA ROBOCZA (opcjonalnie)
+# ===========================================
+
+# Raporty testów, pliki lokalne, szkice
+coverage/
+test-results/
+__pycache__/
