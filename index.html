@@ -204,5 +204,13 @@
 
     <!-- Skrypty -->
     <script src="form-tabs.js"></script>
+
+    <script>
+      fetch("https://chat-danaid.vercel.app/api/register")
+        .then(response => response.json())
+        .then(data => console.log("Odpowiedź backendu:", data))
+        .catch(error => console.error("Błąd połączenia z backendem:", error));
+    </script>
+    
 </body>
 </html>
